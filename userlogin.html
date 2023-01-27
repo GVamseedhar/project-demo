@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="mystyles7.css">
+</head>
+<body>
+    <div class="maincontainer">
+        <div class="thecard" id="rotate">
+            <div class="thefront">
+                <div class="center">
+                    <h1>Login</h1>
+                    <form action="signin.php" method="POST">
+                        <div class="txt_field">
+                            <input type="text" required name="username" id="user_name">
+                            <span></span>
+                            <label>Username</label>
+                        </div>
+                        <div class="txt_field">
+                            <input type="password" required name="pswd" id="password">
+                            <span></span>
+                            <label>Password</label>
+                        </div>
+                        <div class="pass" onclick="change('1')">Forgot password?</div>
+                        <p class="err_msg1" id="er_msg1"></p>
+                        <input type="submit" value="Login" id="login_btn">
+                    </form>
+                </div>
+            
+            </div>
+            <div class="theback">
+                <div class="center2">
+                    <h1>Forgot password?</h1>
+                    <form action="forgotpswd2.php" onsubmit="return validate_fpdata()" method="POST">
+                        <div class="txt_field">
+                            <input type="text" required name="username" id="user_name" required>
+                            <span></span>
+                            <label id="lbl1">Username</label>
+                        </div>
+                        <div class="txt_field">
+                            <input type="date" required name="dob" id="dob" required>
+                            <span></span>
+                            <label id="lbl2">Date of birth</label>
+                        </div>
+                        <div class="txt_field">
+                            <input type="password" required name="pswd" id="pswd" required>
+                            <span></span>
+                            <label id="lbl3">New password</label>
+                        </div>
+                        <div class="txt_field">
+                            <input type="password" required name="cnf_pswd" id="cnf_pswd" required>
+                            <span></span>
+                            <label id="lbl4">Confirm password</label>
+                        </div>
+                        <p class="err_msg1" id="er_msg2"></p>
+                        <input type="submit" value="Reset password">
+                        <div class="signup_link" onclick="change('2')">
+                             Remember your password?<label>back to login</label>
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <script>
+        function change(a){
+            if(a=='1'){
+            document.querySelector("#rotate").style.cssText="transform:perspective(500px) rotateY(180deg);";
+            }
+            else{
+                document.querySelector("#rotate").style.cssText="transform:perspective(500px) rotateY(0deg);";
+            }
+        }   
+        function validate_data(){
+            var username = document.getElementById("username");
+            var phno = document.getElementById("phno");
+            var pswd= document.getElementById("pswd");
+            var cnf_pswd= document.getElementById("cnf_pswd");
+            username.style.borderColor="black";
+            phno.style.borderColor="black";
+            pswd.style.borderColor="black";
+            cnf_pswd.style.borderColor="black";
+            document.getElementById("er_msg").innerHTML="";
+            if(username.value.length < 8){
+                document.getElementById("er_msg").innerHTML="Username must have atleast 8 characters";
+                username.style.borderColor="red";
+                username.focus();
+                return false;
+            }
+            else if(phno.value.includes("+91")){
+                document.getElementById("er_msg").innerHTML="Please remove country code (+91) in mobile number";
+                phno.style.borderColor="red";
+                phno.focus();
+                return false;
+            }
+            else if(phno.value.length<10){
+                document.getElementById("er_msg").innerHTML="Please enter a valid phone number";
+                phno.style.borderColor="red";
+                phno.focus();
+                return false;
+            }
+            else if(pswd.value.length<8){
+                document.getElementById("er_msg").innerHTML="Password must be 8 characters long";
+                pswd.style.borderColor="red";
+                cnf_pswd.style.borderColor="red";
+                pswd.focus();
+                return false;
+            }
+            else if(pswd.value!=cnf_pswd.value){
+                document.getElementById("er_msg").innerHTML="Both passwords must match";
+                pswd.style.borderColor="red";
+                cnf_pswd.style.borderColor="red";
+                cnf_pswd.focus();
+                return false;   
+            }
+            return true;
+        }
+        function validate_fpdata(){
+                        var pswd= document.getElementById("pswd");
+                        var cnf_pswd= document.getElementById("cnf_pswd");
+                        document.getElementById("er_msg2").innerHTML="";
+                        if(pswd.value.length<8){
+                        document.getElementById("er_msg2").innerHTML="Password must be 8 characters long";
+                        document.querySelector("#lbl3").style.cssText="color:red;";
+                        pswd.focus();
+                        return false;
+                        }
+                        else if(pswd.value!=cnf_pswd.value){
+                        document.getElementById("er_msg2").innerHTML="Both passwords must match";
+                        document.querySelector("#lbl3").style.cssText="color:red;";
+                        document.querySelector("#lbl4").style.cssText="color:red;";
+                        pswd.focus();
+                        return false;
+                        }
+                        return true;
+        }
+    </script>
+</body>
+</html>

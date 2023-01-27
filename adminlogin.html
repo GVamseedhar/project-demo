@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="adminloginstyles.css">
+</head>
+<body>
+    <div class="maincontainer">
+        <div class="thecard" id="rotate">
+            <div class="thefront">
+                <div class="center">
+                    <h1>Admin Login</h1>
+                    <form action="adminsignin.php" method="POST">
+                        <div class="txt_field">
+                            <input type="text" required name="username" id="user_name">
+                            <span></span>
+                            <label>Username</label>
+                        </div>
+                        <div class="txt_field">
+                            <input type="password" required name="pswd" id="password">
+                            <span></span>
+                            <label>Password</label>
+                        </div>
+                        <div class="pass"><a href="forgotpswd.html">Forgot password?</a></div>
+                        <p class="err_msg1" id="er_msg1"></p>
+                        <input type="submit" value="Login">
+                        <div class="signup_link">
+                            Not a member? <a href="#" onclick="change('1')">Signup</a>
+                        </div>
+                    </form>
+                </div>
+            
+            </div>
+            <div class="theback">
+                <div class="center2">
+                    <h1>Register</h1>
+                    <form action="adminsignup.php" method="POST" onsubmit="return validate_data()">
+                        <div class="user-details">
+                            <div class="input-box">
+                                <span>Full Name</span>
+                                <input type="text" id="full_name" name="full_name" placeholder="Enter your full name" required>
+                            </div>
+                            <div class="input-box">
+                                <span>Select your service area</span>
+                                <select name="service_area" id="service_area" required>
+                                    <option value="Service_area1">Service area1(1 KM)</option>
+                                    <option value="Service_area2">Service area2(2 KM)</option>
+                                    <option value="Service_area3">Service area3(3 KM)</option>
+                                    <option value="Admin">Admin</option>
+                                </select>
+                            </div>
+                            <div class="input-box">
+                                <span>Username</span>
+                                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                            </div>
+                            <div class="input-box">
+                                <span>Email</span>
+                                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                            </div>
+                            <div class="input-box">
+                                <span>Phone Number</span>
+                                <input type="text" id="phno" name="phno" placeholder="Enter your phone number" required>
+                            </div>
+                            <div class="input-box">
+                                <span>Enter date of birth</span>
+                                <input type="date" name="dob" required id="dob">
+                            </div>
+                            <div class="input-box">
+                                <span>Password</span>
+                                <input type="password" name="pswd" id="pswd" placeholder="Enter your password" required>
+                            </div>
+                            <div class="input-box">
+                                <span>Confirm Password</span>
+                                <input type="password" id="cnf_pswd" placeholder="Confirm your passowrd" required>
+                            </div>
+                        </div>
+                        <div class="align">
+                        <div class="gender-details">
+                            <div class="gender">
+                                <span>Gender</span>
+                            </div>
+                            <div class="btns">
+                                <div class="inner-btn">
+                                    <div class="mid">
+                                        <input type="radio" name="gender" id="Male" value="Male" required>
+                                        <span>Male</span>
+                                    </div>
+                                    <div class="mid">
+                                        <input type="radio" name="gender" id="Female" value="Female" requiured>
+                                        <span>Female</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    
+                                </div>
+                            </div>
+                            <p class="err_msg2" id="er_msg"></p>
+                            <input type="submit" value="Register">
+                        </div>
+                        <div class="sign-in">
+                            <span>Already have an account?<a href="#" onclick="change('2')">Sign in</a></span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <script>
+        function change(a){
+            if(a=='1'){
+            document.querySelector("#rotate").style.cssText="transform:perspective(500px) rotateY(180deg);";
+            }
+            else{
+                document.querySelector("#rotate").style.cssText="transform:perspective(500px) rotateY(360deg);";
+            }
+        }   
+        function validate_data(){
+            var username = document.getElementById("username");
+            var phno = document.getElementById("phno");
+            var pswd= document.getElementById("pswd");
+            var cnf_pswd= document.getElementById("cnf_pswd");
+            username.style.borderColor="black";
+            phno.style.borderColor="black";
+            pswd.style.borderColor="black";
+            cnf_pswd.style.borderColor="black";
+            document.getElementById("er_msg").innerHTML="";
+            if(username.value.length < 8){
+                document.getElementById("er_msg").innerHTML="Username must have atleast 8 characters";
+                username.style.borderColor="red";
+                username.focus();
+                return false;
+            }
+            else if(phno.value.includes("+91")){
+                document.getElementById("er_msg").innerHTML="Please remove country code (+91) in mobile number";
+                phno.style.borderColor="red";
+                phno.focus();
+                return false;
+            }
+            else if(phno.value.length<10){
+                document.getElementById("er_msg").innerHTML="Please enter a valid phone number";
+                phno.style.borderColor="red";
+                phno.focus();
+                return false;
+            }
+            else if(pswd.value.length<8){
+                document.getElementById("er_msg").innerHTML="Password must be 8 characters long";
+                pswd.style.borderColor="red";
+                cnf_pswd.style.borderColor="red";
+                pswd.focus();
+                return false;
+            }
+            else if(pswd.value!=cnf_pswd.value){
+                document.getElementById("er_msg").innerHTML="Both passwords must match";
+                pswd.style.borderColor="red";
+                cnf_pswd.style.borderColor="red";
+                cnf_pswd.focus();
+                return false;   
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>

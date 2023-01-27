@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Roboto');
+*{
+ margin:0;
+ padding: 0;
+ outline: 0;
+}
+body{
+    background: #d6dde0;
+    background-repeat: no-repeat;
+    width: 100%;
+    height:auto;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.top{
+    width: 100%;
+    height: 80px;
+    background-color: #5d7fbb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.inside-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 92%;
+}
+.inside-top a{
+    text-decoration: none;
+}
+.inside-top2{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 35%;
+}
+.top-box{
+    width: fit-content;
+    text-decoration: none;
+    background-color: #e7e9f0;
+    color: #1e365a;
+    font-weight: 00;
+    border-width: 5px solid black;
+    height: fit-content;
+    padding: 10px 15px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s all;
+}
+
+.top-box:hover{
+transform: scale(1.08);
+}
+table{
+    text-align: center;
+    width: 68%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    outline:0.5px solid rgb(170, 168, 168);
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #fff;
+    margin-bottom: 50px;
+}
+.table-container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top:50px;
+}
+th{
+    background: #362f4b;
+    color: #fff;
+}
+th,td{
+    padding: 8px 12px;
+}
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+.td-size{
+    width: 120px;
+    height: fit-content;
+}
+.size{
+    border-radius: 12px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn{
+    width: fit-content;
+    height: fit-content;
+    padding: 5px;
+    background-color: #5d7fbb;
+    color:#fff;
+    border-color: none;
+    outline: none;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+}
